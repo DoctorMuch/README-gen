@@ -73,14 +73,43 @@ const questions = [
   }
 ];
 
+const project = [
+  {
+    type: 'input',
+    name: 'description',
+    message: 'Please describe your application: '
+  },
+  {
+    type: 'input',
+    name: 'install',
+    message: 'Are there any special instructions for user installation?'
+  }
+];
+
+const projectPrompt = projectInfo => {
+  if (!projectInfo.project) {
+    projectInfo.projects = [];
+  }
+  console.log(`
+  ===================
+  Project Information
+  ===================
+  `);
+  return inquirer.prompt(project)
+  .then(projectInfoData => {
+    projectInfo.projects.push(projectInfoData);
+    return projectInfo;
+  })
+
+}
 
 // TODO: Create a function to write README file
-const writeToFile = (filename,data) => {
-  fs.writeFile('./utils/README.md', pageMarkdown, err => {
+const writeToFile = (filename, data) => {
+  fs.writeFile(filename, data, err => {
     if(err) {
       throw err;
     } else {
-      console.log('Check out your new file in the "utils" folder.');
+      console.log('Check out your new README file in the directory.');
     }    
   })
 }
@@ -88,18 +117,13 @@ const writeToFile = (filename,data) => {
 // TODO: Create a function to initialize app
 const init = () => {
   inquirer.prompt(questions)
+  .then(projectPrompt)
   .then(readMeData => {
     console.log(generateMarkdown(readMeData));
     return generateMarkdown(readMeData);
   })
   .then(pageMarkdown => {
-    fs.writeFile('./README.md', pageMarkdown, err => {
-      if(err) {
-        throw err;
-      } else {
-        console.log('Check out your new file in the "utils" folder.');
-      }    
-    })
+    writeToFile('./README.md', pageMarkdown);
   })
   // .then(pageMarkdown => {
   //   return writeToFile(pageMarkdown);

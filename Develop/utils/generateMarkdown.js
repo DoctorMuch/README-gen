@@ -2,7 +2,7 @@
 // If there is no license, return an empty string
 
 const renderLicenseBadge = license => {
-  if (!license) {
+  if (license === 'other') {
     return '';
   }
   return "![Shield](https://img.shields.io/license/MIT/green)";
@@ -23,15 +23,36 @@ const renderLicenseSection = license => {
 // TODO: Create a function to generate markdown for README
 const generateMarkdown = markdownData => {
   console.log(markdownData);
-  const { dev, github, title, repo, license } = markdownData;
+  const { dev, github, title, repo, license, projects } = markdownData;
+  const { description, install } = projects;
   
   return `
-    ${renderLicenseBadge(license)}
-    # ${title}
-    ## https://github.com/${github}/${repo}
+  ${renderLicenseBadge(license)}
+  # ${title}
+  ---
+  ## Description
+  ${description}
+  ---
+  ## Table of Contents
+  ---
+  ## Installation
+  ---
+  ## Usage
+  ---
+  ### License
 
-    ## Contributors
-      ${dev}
+  ---
+  ### Contributors
+  ${dev}
+
+  ---
+  ### Questions
+  > https://github.com/${github}/${repo}
+
+  ---
+  
+
+  
   `;
 
 };
