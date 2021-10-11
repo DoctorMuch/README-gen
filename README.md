@@ -1,9 +1,9 @@
 
   ![Shield](https://img.shields.io/license/MIT/green)
-  # Gangster's Paradise
+  # the readME Generation
   ---
   ## Description
-  undefined
+  [object Object]
   ---
   ## Table of Contents
   ---
@@ -15,11 +15,11 @@
 
   ---
   ### Contributors
-  Coolio
+  David
 
   ---
   ### Questions
-  > https://github.com/TheRealCoolio/gangster-pair-of-dice
+  > https://github.com/doctormuch/readMe-gen
 
   ---
   

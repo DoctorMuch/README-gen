@@ -24,7 +24,7 @@ const renderLicenseSection = license => {
 const generateMarkdown = markdownData => {
   console.log(markdownData);
   const { dev, github, title, repo, license, projects } = markdownData;
-  const { description, install } = projects;
+  const [ description, install ] = projects;
   
   return `
   ${renderLicenseBadge(license)}
