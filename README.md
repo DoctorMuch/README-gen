@@ -1,15 +1,20 @@
 
   ![Shield](https://img.shields.io/license/MIT/green)
-  # the readME Generation
-  ---
-  ## Description
-  [object Object]
+  # The Coffee Connection
+
+  
+  ### Description
+  This application finds a nearby coffee shop, using a search based on your current ZIP code.
+
   ---
   ## Table of Contents
   ---
-  ## Installation
+  ### Installation
+  no
+
   ---
-  ## Usage
+  ### Usage
+
   ---
   ### License
 
@@ -19,7 +24,7 @@
 
   ---
   ### Questions
-  > https://github.com/doctormuch/readMe-gen
+  > https://github.com/DoctorMuch/coffee-con
 
   ---
   

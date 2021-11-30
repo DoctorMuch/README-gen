@@ -23,6 +23,19 @@ const questions = [
   },
   {
     type: 'input',
+    name: 'email',
+    message: 'What is your email address?',
+    validate: emailInput => {
+      if (!emailInput) {
+        console.log('Email address is required.');
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
+  {
+    type: 'input',
     name: 'github',
     message: 'What is your GitHub profile?',
     validate: githubInput => {
