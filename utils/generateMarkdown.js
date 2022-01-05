@@ -2,30 +2,48 @@
 // If there is no license, return an empty string
 
 const renderLicenseBadge = license => {
-  if (license === 'other') {
-    return '';
+  switch (license) {
+    case 'ISC':
+      return "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)";
+      break;
+    case 'MIT':
+      return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+      break;
+    case 'GPLv3':
+      return "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+      break;
+    case 'other':
+      return "[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)";
+      break;
+    default:
+      return '';
   }
-  return "![Shield](https://img.shields.io/license/MIT/green)";
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-const  renderLicenseLink = license => {
+  // TODO: Create a function that returns the license link
+  // If there is no license, return an empty string
+  const renderLicenseLink = license => {
+    if (!license) {
+      return '';
+    }
 
-}
+  }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-const renderLicenseSection = license => {
+  // TODO: Create a function that returns the license section of README
+  // If there is no license, return an empty string
+  const renderLicenseSection = license => {
+    if (!license) {
+      return '';
+    }
 
-}
+  }
 
-// TODO: Create a function to generate markdown for README
-const generateMarkdown = markdownData => {
-  console.log(markdownData);
-  const { dev, github, title, repo, license, projects } = markdownData;
-  
-  return `
+  // TODO: Create a function to generate markdown for README
+  const generateMarkdown = markdownData => {
+    console.log(markdownData);
+    const { dev, email, github, title, repo, license, projects } = markdownData;
+
+    return `
   ${renderLicenseBadge(license)}
   # ${title}
 
@@ -35,6 +53,11 @@ const generateMarkdown = markdownData => {
 
   ---
   ## Table of Contents
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Contributors](#contributors)
+  * [Questions](#questions)
+
   ---
   ### Installation
   ${projects[0].install}
@@ -47,11 +70,12 @@ const generateMarkdown = markdownData => {
 
   ---
   ### Contributors
-  ${dev}
+  * ${dev}
 
   ---
   ### Questions
-  > https://github.com/${github}/${repo}
+  > GitHub: https://github.com/${github}/${repo}
+  > Email: ${email}
 
   ---
   
@@ -59,6 +83,6 @@ const generateMarkdown = markdownData => {
   
   `;
 
-};
+  };
 
-module.exports = generateMarkdown;
+  module.exports = generateMarkdown;

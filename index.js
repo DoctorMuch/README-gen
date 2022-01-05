@@ -110,6 +110,7 @@ const projectPrompt = projectInfo => {
   `);
   return inquirer.prompt(project)
   .then(projectInfoData => {
+    console.log(projectInfo);
     projectInfo.projects.push(projectInfoData);
     return projectInfo;
   })
@@ -132,7 +133,6 @@ const init = () => {
   inquirer.prompt(questions)
   .then(projectPrompt)
   .then(readMeData => {
-    console.log(generateMarkdown(readMeData));
     return generateMarkdown(readMeData);
   })
   .then(pageMarkdown => {
