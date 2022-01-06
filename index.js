@@ -76,7 +76,7 @@ const questions = [
     type: 'list',
     name: 'license',
     message: 'What is the software license for your application?',
-    choices: ['ISC', 'MIT', 'GPLv3', 'other']
+    choices: ['Apache', 'BSD', 'GPLv3', 'ISC', 'MIT', 'other', 'none']
   },
   {
     type: 'input',
@@ -96,6 +96,11 @@ const project = [
     type: 'input',
     name: 'install',
     message: 'Are there any special instructions for user installation?'
+  },
+  {
+    type: 'input',
+    name: 'usage',
+    message: 'How do you expect a person to use this application?'
   }
 ];
 

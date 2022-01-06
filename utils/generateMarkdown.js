@@ -4,47 +4,83 @@
 const renderLicenseBadge = license => {
   switch (license) {
     case 'ISC':
-      return "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)";
+      return "![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)";
       break;
     case 'MIT':
-      return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+      return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]";
       break;
     case 'GPLv3':
-      return "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+      return "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)]";
+      break;
+    case 'Apache':
+      return "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]";
+      break;
+    case 'BSD':
+      return "[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)]";
       break;
     case 'other':
-      return "[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)";
+      return "[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)]";
+      break;
+    case 'none':
+      return '';
       break;
     default:
       return '';
   }
 }
 
-  // TODO: Create a function that returns the license link
-  // If there is no license, return an empty string
-  const renderLicenseLink = license => {
-    if (!license) {
+// TODO: Create a function that returns the license link
+// If there is no license, return an empty string
+const renderLicenseLink = license => {
+  switch (license) {
+    case 'ISC':
+      return "(https://opensource.org/licenses/ISC)";
+      break;
+    case 'MIT':
+      return "(https://opensource.org/licenses/MIT)";
+      break;
+    case 'GPLv3':
+      return "(https://www.gnu.org/licenses/gpl-3.0)";
+      break;
+    case 'Apache':
+      return "(https://opensource.org/licenses/Apache-2.0)";
+      break;
+    case 'BSD':
+      return "(https://opensource.org/licenses/BSD-3-Clause)";
+      break;
+    case 'other':
+      return "(http://unlicense.org/)";
+      break;
+    case 'none':
       return '';
-    }
-
-  }
-
-  // TODO: Create a function that returns the license section of README
-  // If there is no license, return an empty string
-  const renderLicenseSection = license => {
-    if (!license) {
+      break;
+    default:
       return '';
-    }
-
   }
+}
 
-  // TODO: Create a function to generate markdown for README
-  const generateMarkdown = markdownData => {
-    console.log(markdownData);
-    const { dev, email, github, title, repo, license, projects } = markdownData;
-
+// TODO: Create a function that returns the license section of README
+// If there is no license, return an empty string
+const renderLicenseSection = license => {
+  if (!license) {
+    return '';
+  } else {
     return `
-  ${renderLicenseBadge(license)}
+  ---
+  ### License
+  ${license}
+    `
+  }
+
+}
+
+// TODO: Create a function to generate markdown for README
+const generateMarkdown = markdownData => {
+  console.log(markdownData);
+  const { dev, email, github, title, repo, license, projects } = markdownData;
+
+  return `
+  [${renderLicenseBadge(license)}]${renderLicenseLink(license)}
   # ${title}
 
   
@@ -64,10 +100,9 @@ const renderLicenseBadge = license => {
 
   ---
   ### Usage
+  ${projects[0].usage}
 
-  ---
-  ### License
-
+  ${renderLicenseSection(license)}
   ---
   ### Contributors
   * ${dev}
@@ -83,6 +118,6 @@ const renderLicenseBadge = license => {
   
   `;
 
-  };
+};
 
-  module.exports = generateMarkdown;
+module.exports = generateMarkdown;
